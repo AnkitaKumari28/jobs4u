@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 import { CandidatesService } from 'src/app/Services/candidates/candidates.service';
 import { CompaniesService } from 'src/app/Services/companies/companies.service';
-import { CustomValidators } from '../Validators/validators';
+
 
 @Component({
   selector: 'app-login',
@@ -13,8 +13,9 @@ import { CustomValidators } from '../Validators/validators';
 export class LoginComponent implements OnInit {
 
   LoginForm!: FormGroup;
-  constructor(private _fb: FormBuilder, private _candidate: CandidatesService, private _company: CompaniesService) { }
-  userID: number = 0;
+  onCandidate: any = false;
+  onCompany: any = false;
+  constructor(private _fb: FormBuilder, private _candidate: CandidatesService, private _company: CompaniesService, private _route: Router) { }
   ngOnInit(): void {
     this.LoginForm = this._fb.group({
 
@@ -22,15 +23,42 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
 
     })
+
     this._candidate.onLanding$.next(false);
+
+    this._candidate.onCandidate$.subscribe(x => {
+      this.onCandidate = x;
+    })
+    this._company.onCompanies$.subscribe(x => {
+      this.onCompany = x;
+    })
+
 
   }
   submitLoginForm(form: FormGroup) {
-    this._candidate.userID(form.value.email);
-    this._company.userID(form.value.email);
+    if (form.valid) {
+      if (form.value.email == "sagar.singh@gmail.com" || form.value.email == "ashu.tiwari@gmail.com" || form.value.email == "anki.patel@gmail.com" || form.value.email == "dibs.ghosh@gmail.com") {
+
+        this._candidate.userID(form.value.email);
+        this._candidate.getCandidatesDatabyAPI().subscribe((candidateData) => {
+          this._company.userData = candidateData.filter(x => x.email == form.value.email);
+        })
+        this._route.navigate(['/candidateView']);
+      }
+      else {
+        this._company.userID(form.value.email);
+        this._company.getCompaniesDatabyAPI().subscribe((companyData) => {
+          this._company.userData = companyData.filter(x => x.emailID == form.value.email);
+        })
+        this._route.navigate(['/companyView']);
+      }
+    }
   }
 
 
+  loggedin() {
+    this._company.Loggedin$.next(true);
+  }
 
 
 

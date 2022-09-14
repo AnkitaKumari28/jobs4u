@@ -15,13 +15,12 @@ export class JobSearchComponent implements OnInit {
   locationControl = new FormControl('');
 
   jobOptions: string[] = ['software Developer', 'Sales Executive', 'Networking', 'Software Tester', 'Teacher', 'Marketing Executive','Engineering Design', 'Accounts', 'Journalism', 'Hotels', 'Medical', "Sales", "Production","Financial Services","IT Software - Application Programming", "ITES", "Executive Assistant"];
-  locationOptions: string[] = ['Noida', 'Delhi', 'Nagpur', 'Mumbai', 'Pune', 'Bangalore', 'Kolkata', 'Hyderabad', 'Chennai', 'Jaipur', 'Indore', 'Gurgao', 'Ahemdabad'];
+  locationOptions: string[] = ['Noida', 'Delhi', 'Nagpur', 'Mumbai', 'Pune', 'Bengaluru', 'Kolkata', 'Hyderabad', 'Chennai', 'Jaipur', 'Indore', 'Gurgao', 'Ahemdabad'];
   
   filteredJobOptions!: Observable<string[]>;
   filteredLocationOptions!: Observable<string[]>;
 
   hideResults:boolean = true;
-  // show:boolean = false;
   
   @ViewChild('jobList')
   private jobListReference!: JobListComponent;
@@ -74,7 +73,6 @@ export class JobSearchComponent implements OnInit {
     let title = this.jobControl.value?this.jobControl.value:'all'
     let location = this.locationControl.value?this.locationControl.value:'all'
     this.jobListReference.filterJob(title,location)
-
   }
 
   showResult(value:boolean){

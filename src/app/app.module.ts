@@ -13,16 +13,17 @@ import { JobDetailsModule } from './job-details/job-details.module';
 import { ProfileModule } from './Profile.module/profile.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataSourceService } from './Data/data.service';
 import { CompaniesService } from './Services/companies/companies.service';
 import { CandidatesService } from './Services/candidates/candidates.service';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { NavbarOtherModule } from './navbar-other/navbar-other.module';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { JobsServices } from './Services/Jobs/jobs.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule, ReactiveFormsModule,
@@ -37,9 +38,11 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
     ProfileModule, PageNotFoundModule,
     HttpClientModule,NavbarOtherModule,
     HttpClientInMemoryWebApiModule.forRoot(DataSourceService)
-
+=======
+   
+>>>>>>> 3f63e6522a1e10a4c1bd530b10b9f788b264eb0e
   ],
-  providers: [CompaniesService, CandidatesService, DataSourceService],
+  providers: [CompaniesService, CandidatesService, DataSourceService, JobsServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
