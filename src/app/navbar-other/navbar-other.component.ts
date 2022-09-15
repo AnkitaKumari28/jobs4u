@@ -9,22 +9,32 @@ import { CompaniesService } from '../Services/companies/companies.service';
 })
 export class NavbarOtherComponent implements OnInit {
 
-  constructor(private _data:CandidatesService,private _data2:CompaniesService) { }
-
+  userName: string | null = "";
+  constructor(private _data: CandidatesService, private _data2: CompaniesService) { }
+  loggedin: any = false;
   ngOnInit(): void {
+    this._data2.Loggedin$.subscribe(x => {
+      this.loggedin = x;
+    })
+
+    this._data2.userName$.subscribe(x => {
+      this.userName = x;
+
+    })
+
   }
 
-  onCandidate(){
-    this._data2.onCompanies$.next(false);
-    this._data.onCandidate$.next(true);
-
-  }
-  onCompanies(){
+  onCompanies() {
     this._data2.onCompanies$.next(true);
     this._data.onCandidate$.next(false);
-  
+
   }
-  onLanding(){
-    this._data.onLanding$.next(false);
+  onLanding() {
+    this._data.onLanding$.next(true);
+
+  }
+  loggedOut() {
+
+    this._data2.Loggedin$.next(false);
   }
 }

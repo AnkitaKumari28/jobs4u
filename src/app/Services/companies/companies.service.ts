@@ -1,15 +1,17 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
 import { CanDeactivate } from "@angular/router";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { ICompany } from "src/app/Models/company.interface";
 import { EditCompanyComponent } from "src/app/Profile.module/Company/Edit profile/edit-company.component";
 
 @Injectable()
-export class CompaniesService implements CanDeactivate<EditCompanyComponent>,OnInit {
-    companyIDsubject$ = new Subject();
+export class CompaniesService implements CanDeactivate<EditCompanyComponent>, OnInit {
+    companyIDsubject$ = new BehaviorSubject("");
     companiesDataURL: string = "api/companiesData";
-    onCompanies$= new BehaviorSubject(false);
+    onCompanies$ = new BehaviorSubject(false);
+    Loggedin$ = new BehaviorSubject(false);
+    userName$ = new BehaviorSubject("");
     constructor(private _http: HttpClient) {
 
     }
@@ -22,6 +24,7 @@ export class CompaniesService implements CanDeactivate<EditCompanyComponent>,OnI
     }
     userID(user: string) {
         this.companyIDsubject$.next(user);
+
     }
     canDeactivate(component: EditCompanyComponent): Observable<boolean> | Promise<boolean> | boolean {
 
