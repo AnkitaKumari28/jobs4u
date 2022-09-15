@@ -38,9 +38,7 @@ import { JobsServices } from './Services/Jobs/jobs.service';
     ProfileModule, PageNotFoundModule,
     HttpClientModule,NavbarOtherModule,
     HttpClientInMemoryWebApiModule.forRoot(DataSourceService)
-=======
-   
->>>>>>> 3f63e6522a1e10a4c1bd530b10b9f788b264eb0e
+
   ],
   providers: [CompaniesService, CandidatesService, DataSourceService, JobsServices],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import { CandidatesService } from 'src/app/Services/candidates/candidates.servic
   templateUrl: './sign-up-job-seekers.component.html',
   styleUrls: ['./sign-up-job-seekers.component.css']
 })
-export class SignUpJobSeekersComponent implements OnInit,OnDestroy {
+export class SignUpJobSeekersComponent implements OnInit {
   SignupJobSeekersForm!:FormGroup;
   pass1:string='';
   pass2:string='';
@@ -23,8 +23,7 @@ export class SignUpJobSeekersComponent implements OnInit,OnDestroy {
     })
     this._candidate.onLanding$.next(false);
   }
-  ngOnDestroy(){
-  }
+ 
   submit(){
   }
 }
