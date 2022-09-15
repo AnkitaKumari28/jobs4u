@@ -30,7 +30,6 @@ export class SignupCompanyComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-
   submit(form: FormGroup) {
     if (form.valid) {
       this._router.navigate(['/companyEdit']);
