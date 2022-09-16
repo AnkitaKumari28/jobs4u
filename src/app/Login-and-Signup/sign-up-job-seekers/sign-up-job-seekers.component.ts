@@ -13,7 +13,7 @@ export class SignUpJobSeekersComponent implements OnInit {
   SignupJobSeekersForm!:FormGroup;
   pass1:string='';
   pass2:string='';
-  //errorPassword:boolean=false;
+  errorPassword:boolean=false;
   constructor(private _fb:FormBuilder,private _candidate:CandidatesService, private _company: CompaniesService,private _router:Router) {}   
   ngOnInit(): void {
     this.SignupJobSeekersForm=this._fb.group({
