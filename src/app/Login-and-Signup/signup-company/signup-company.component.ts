@@ -12,6 +12,8 @@ import { CompaniesService } from 'src/app/Services/companies/companies.service';
 export class SignupCompanyComponent implements OnInit, OnDestroy {
 
   SignupCompanyForm!: FormGroup;
+  userData: any[] = [];
+
   constructor(private _fb: FormBuilder, private _candidate: CandidatesService, private _company: CompaniesService, private _router: Router) { }
 
   ngOnInit(): void {
@@ -33,9 +35,15 @@ export class SignupCompanyComponent implements OnInit, OnDestroy {
 
   submit(form: FormGroup) {
     if (form.valid) {
-      this._router.navigate(['/companyEdit']);
       this._company.Loggedin$.next(true);
-    }
+      this._company.getCompaniesDatabyAPI().subscribe((companyData) => {
 
+      })
+      this._company.userName$.next(form.value.email);
+      this._router.navigate(['/companyEdit']);
+    }
   }
 }
+
+
+

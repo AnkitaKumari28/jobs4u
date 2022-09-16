@@ -19,7 +19,6 @@ import { CandidatesService } from './Services/candidates/candidates.service';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { NavbarOtherModule } from './navbar-other/navbar-other.module';
 import { JobsServices } from './Services/Jobs/jobs.service';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -34,8 +33,10 @@ import { JobsServices } from './Services/Jobs/jobs.service';
     JobDetailsModule,
     JobSearchModule,
     ProfileModule, PageNotFoundModule,
-    HttpClientModule,NavbarOtherModule,
-    HttpClientInMemoryWebApiModule.forRoot(DataSourceService)
+    HttpClientModule, NavbarOtherModule,
+    HttpClientInMemoryWebApiModule.forRoot(DataSourceService),
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(DataSourceService),
 
   ],
   providers: [CompaniesService, CandidatesService, DataSourceService, JobsServices],
