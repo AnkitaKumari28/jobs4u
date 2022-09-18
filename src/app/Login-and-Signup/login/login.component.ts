@@ -55,15 +55,12 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-
-<<<<<<< HEAD
   
   loggedin() {
     this._company.Loggedin$.next(true);
   }
 
-=======
->>>>>>> a437a591dab1cc394184b70406215b3af20f1277
+
 
 
 }
